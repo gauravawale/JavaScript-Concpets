@@ -16,7 +16,7 @@ Person.prototype.addProperty = function(key, value) {
     this.obj[key] = value;
 }
 
-Person.prototype.iterFactory = function(key, value) {
+Person.prototype.iterFactory = function() {
     var self = this;
     var objKeys = Object.keys(self.obj);
     var index = 0;
@@ -37,7 +37,7 @@ Person.prototype.iterFactory = function(key, value) {
     }
 }
 
-Person.prototype[Symbol.iterator] = function(key, value) {
+Person.prototype[Symbol.iterator] = function() {
     var self = this;
     var objKeys = Object.keys(self.obj);
     var index = 0;
