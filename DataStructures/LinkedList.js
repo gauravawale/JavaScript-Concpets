@@ -49,22 +49,26 @@ class LinkedList {
             console.log('This list is empty, adding the data at index 0.');
             this.head = node;
         }
+        else if(index === 0) {
+            node.next = this.head;
+            this.head = node;
+        }
         else {
             let current = this.head;
             let currentIndex = 0;
-            let prev;
+            let prev = this.head;
             while (currentIndex < index && current.next !== null) {
                 prev = current;
                 current = current.next;
                 currentIndex++;
             }
-            if (current.next === null) {
-                console.log('Reached the end of the list, adding the node at last');
-                current.next = node;
-            }
-            else {
+            if (currentIndex === index) {
                 prev.next = node;
                 node.next = current;
+            }
+            else {
+                console.log('Reached the end of the list, adding the node at last');
+                current.next = node;
             }
         }
     }
@@ -73,27 +77,23 @@ class LinkedList {
         if (this.head === null) {
             console.log('This list is empty');
         }
+        else if (index === 0) {
+            this.head = this.head.next;
+        }
         else {
-            if (this.head !== null) {
-                if (index === 0) {
-                    this.head = this.head.next;
-                }
-                else {
-                    let current = this.head;
-                    let currentIndex = 0;
-                    let prev = this.head;
-                    while (currentIndex < index && current.next !== null) {
-                        prev = current;
-                        current = current.next;
-                        currentIndex++;
-                    }
-                    if (currentIndex === index) {
-                        prev.next = current.next;
-                    }
-                    else {
-                        console.log('Index exceeds the list size');
-                    }
-                }
+            let current = this.head;
+            let currentIndex = 0;
+            let prev = this.head;
+            while (currentIndex < index && current.next !== null) {
+                prev = current;
+                current = current.next;
+                currentIndex++;
+            }
+            if (currentIndex === index) {
+                prev.next = current.next;
+            }
+            else {
+                console.log('Index exceeds the list size');
             }
         }
     }
