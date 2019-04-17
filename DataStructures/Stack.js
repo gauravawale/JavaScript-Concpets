@@ -8,7 +8,7 @@ Last In First Out (LIFO) principle
 class Stack {
     constructor() {
         this.top = -1;
-        this.values = [];
+        this.values = {};
     }
 
     push(data) {
@@ -21,7 +21,9 @@ class Stack {
         }
         else {
             console.log(this.values[this.top]);
-            return this.values[this.top--];
+            let val = this.values[this.top];
+            delete this.values[this.top--];
+            return val;
         }
     }
     display() {
