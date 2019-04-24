@@ -5,35 +5,37 @@ Last In First Out (LIFO) principle
  */
 
 
+let values = Symbol('values');
+let toppointer = Symbol('toppointer');
 class Stack {
     constructor() {
-        this.top = -1;
-        this.values = {};
+        this[toppointer] = -1;
+        this[values] = {};
     }
 
     push(data) {
-        this.values[++this.top] = data;
+        this[values][++this[toppointer]] = data;
     }
 
     pop() {
-        if (this.top === -1) {
+        if (this[toppointer] === -1) {
             console.log('Stack is empty');
         }
         else {
-            console.log(this.values[this.top]);
-            let val = this.values[this.top];
-            delete this.values[this.top--];
+            console.log(this[values][this[toppointer]]);
+            let val = this[values][this[toppointer]];
+            delete this[values][this[toppointer]--];
             return val;
         }
     }
     display() {
-        let top = this.top;
-        if (top === -1) {
+        let currenttop = this[toppointer];
+        if (currenttop === -1) {
             console.log('Stack is empty');
         }
         else {
-            while(top >=0) {
-                console.log(this.values[top--]);
+            while(currenttop >=0) {
+                console.log(this[values][currenttop--]);
             }
         }
     }
